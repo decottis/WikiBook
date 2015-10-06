@@ -16,33 +16,31 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CollectionActivity extends ActionBarActivity {
+public class FilterCatalogActivity extends ActionBarActivity {
     int lastItemClicked = -1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ListView bookList = (ListView)findViewById(R.id.bookFilterList);
+        List<Map<String, String>> l_filter = new ArrayList<Map<String, String>>();
 
-
-        ListView bookList = (ListView)findViewById(R.id.bookList);
-        List<Map<String, String>> l_books = new ArrayList<Map<String, String>>();
-
-        for( Book book : BookCollection.getBooks()) {
+        for( BookFilter bookFilter : BookFilterCatalog.getBookFilters()) {
             Map<String, String> bookMap = new HashMap<String, String>();
-            bookMap.put("img", String.valueOf(R.drawable.icone)); // use available img
-            bookMap.put("author", book.getAuthor());
-            bookMap.put("title", book.getTitle());
-            bookMap.put("gender", book.getGender());
-            bookMap.put("isbn", book.getIsbn());
-            bookMap.put("year", book.getYear());
-            bookMap.put("description", book.getDescription());
-            l_books.add(bookMap);
+            bookMap.put("name", bookFilter.getName());
+            bookMap.put("author", bookFilter.getCriterion(BookFilter.FilterType.AUTHOR));
+            bookMap.put("title", bookFilter.getCriterion(BookFilter.FilterType.TITLE));
+            bookMap.put("gender", bookFilter.getCriterion(BookFilter.FilterType.GENDER));
+            bookMap.put("isbn", bookFilter.getCriterion(BookFilter.FilterType.ISBN));
+            bookMap.put("year", bookFilter.getCriterion(BookFilter.FilterType.YEAR));
+            bookMap.put("description", bookFilter.getCriterion(BookFilter.FilterType.DESCRIPTION));
+            l_filter.add(bookMap);
         }
         
-        SimpleAdapter listAdapter = new SimpleAdapter(this.getBaseContext(), l_books, R.layout.book_detail,
-                new String[] {"img", "author", "title", "gender", "isbn", "year", "description"},
-                new int[] {R.id.img_cover, R.id.author, R.id.title, R.id.gender, R.id.isbn, R.id.year, R.id.description});
+        SimpleAdapter listAdapter = new SimpleAdapter(this.getBaseContext(), l_filter, R.layout.book_filter_detail,
+                new String[] {"name", "author", "title", "gender","isbn", "year", "description"},
+                new int[] {R.id.name, R.id.author, R.id.title, R.id.gender, R.id.isbn, R.id.year, R.id.description});
 
         bookList.setAdapter(listAdapter);
         bookList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -52,7 +50,7 @@ public class CollectionActivity extends ActionBarActivity {
                 ActionBar actionBar = getSupportActionBar();
                 actionBar.show();
                 HashMap<String,String> map = (HashMap<String,String>)parent.getItemAtPosition(position);
-                actionBar.setTitle(map.get("title"));
+                actionBar.setTitle(map.get("name"));
                 lastItemClicked = position;
                 System.out.println(position +"   " + id);
             }

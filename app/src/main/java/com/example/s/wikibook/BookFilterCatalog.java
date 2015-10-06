@@ -9,6 +9,12 @@ import java.util.List;
 public class BookFilterCatalog {
     private static List<BookFilter> filters = new ArrayList<BookFilter>();
 
+    public BookFilterCatalog(){
+        filters = new ArrayList<BookFilter>();
+    }
+
+    private static BookFilter selectedBookFilter;
+
     public static List<BookFilter> getBookFilters(){
         return filters;
     }
@@ -20,4 +26,13 @@ public class BookFilterCatalog {
     public static void removeBookFilter(BookFilter filter){
         filters.remove(filter);
     }
+
+    public static BookFilter getSelectedBookFilter(){
+        return selectedBookFilter;
+    }
+
+    public static void setSelectedBookFilter(BookFilter bookFilter){
+       selectedBookFilter = bookFilter;
+    }
+
 }

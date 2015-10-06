@@ -16,13 +16,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CollectionActivity extends ActionBarActivity {
+public class FiltredCollectionActivity extends ActionBarActivity {
     int lastItemClicked = -1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
 
         ListView bookList = (ListView)findViewById(R.id.bookList);
@@ -33,7 +32,6 @@ public class CollectionActivity extends ActionBarActivity {
             bookMap.put("img", String.valueOf(R.drawable.icone)); // use available img
             bookMap.put("author", book.getAuthor());
             bookMap.put("title", book.getTitle());
-            bookMap.put("gender", book.getGender());
             bookMap.put("isbn", book.getIsbn());
             bookMap.put("year", book.getYear());
             bookMap.put("description", book.getDescription());
@@ -41,8 +39,8 @@ public class CollectionActivity extends ActionBarActivity {
         }
         
         SimpleAdapter listAdapter = new SimpleAdapter(this.getBaseContext(), l_books, R.layout.book_detail,
-                new String[] {"img", "author", "title", "gender", "isbn", "year", "description"},
-                new int[] {R.id.img_cover, R.id.author, R.id.title, R.id.gender, R.id.isbn, R.id.year, R.id.description});
+                new String[] {"img", "author", "title", "isbn", "year", "description"},
+                new int[] {R.id.img_cover, R.id.author, R.id.title, R.id.isbn, R.id.year, R.id.description});
 
         bookList.setAdapter(listAdapter);
         bookList.setOnItemClickListener(new AdapterView.OnItemClickListener() {

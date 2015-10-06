@@ -25,6 +25,7 @@ public class CreateBookFilterActivity extends Activity {
     public void createBookFilter(View view)
     {
         Map<BookFilter.FilterType, String> criteria = new HashMap<BookFilter.FilterType, String>();
+        EditText name = (EditText)findViewById(R.id.EditName);
         EditText title = (EditText)findViewById(R.id.EditTitle);
         EditText author = (EditText)findViewById(R.id.EditAuthor);
         EditText description = (EditText)findViewById(R.id.EditDescription);
@@ -39,10 +40,11 @@ public class CreateBookFilterActivity extends Activity {
         criteria.put(BookFilter.FilterType.GENDER, genre.getText().toString());
         criteria.put(BookFilter.FilterType.ISBN, isbn.getText().toString());
 
-        BookFilter newBookFilter = new BookFilter(criteria);
+        BookFilter newBookFilter = new BookFilter(name.getText().toString(),criteria);
 
         BookFilterCatalog.addBookFilter(newBookFilter);
 
+        name.getText().clear();
         title.getText().clear();
         author.getText().clear();
         description.getText().clear();

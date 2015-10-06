@@ -1,7 +1,5 @@
 package com.example.s.wikibook;
 
-import com.example.s.wikibook.Book;
-
 import java.util.Map;
 
 /**
@@ -14,8 +12,14 @@ public class BookFilter{
     }
     private Map<FilterType, String> criteria;
 
-    public BookFilter(Map<FilterType, String> criteria){
+    private String name;
+    public BookFilter(String name, Map<FilterType, String> criteria){
+        this.name = name;
         this.criteria = criteria;
+    }
+
+    public String getName(){
+        return this.name;
     }
 
     public boolean isSelected(Book book){
@@ -32,7 +36,7 @@ public class BookFilter{
             return false;
         }
         String tGender = getCriterion(FilterType.GENDER);
-        if(!book.getGenre().toLowerCase().contains(tGender.toLowerCase())){
+        if(!book.getGender().toLowerCase().contains(tGender.toLowerCase())){
             return false;
         }
         String tDescription = getCriterion(FilterType.DESCRIPTION);
@@ -46,7 +50,7 @@ public class BookFilter{
         return true;
     }
 
-    private String getCriterion(FilterType filterType){
+    public String getCriterion(FilterType filterType){
         return (criteria.get(filterType) != null) ? criteria.get(filterType) : "";
     }
 
