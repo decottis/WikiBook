@@ -10,23 +10,23 @@ import java.util.ListIterator;
 /**
  * Created by S on 24/09/2015.
  */
-public class BookCollection implements Serializable{
+public class BookCollection {
 
-    ArrayList<Book> l_books;
+    public static ArrayList<Book> l_books = new ArrayList<Book>();
 
     public BookCollection() {
         l_books = new ArrayList<Book>();
     }
 
-    public ArrayList<Book> getBooks() {
+    public static ArrayList<Book> getBooks() {
         return l_books;
     }
 
-    public void addBook(Book book) {
-        this.l_books.add(book);
+    public static void addBook(Book book) {
+        l_books.add(book);
     }
 
-    public void setL_books(ArrayList<Book> l_books) {
+    public void set_books(ArrayList<Book> l_books) {
         this.l_books = l_books;
     }
 }
