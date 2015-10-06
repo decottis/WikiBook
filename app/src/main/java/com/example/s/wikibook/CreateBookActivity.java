@@ -28,8 +28,9 @@ public class CreateBookActivity extends Activity {
         EditText genre = (EditText)findViewById(R.id.EditGenre);
         EditText isbn = (EditText)findViewById(R.id.EditIsbn);
 
-        Book newBook = new Book(title.toString(), author.toString(), genre.toString(), year.toString(), description.toString(), isbn.toString());
+        Book newBook = new Book(title.getText().toString(), author.getText().toString(), genre.getText().toString(), year.getText().toString(), description.getText().toString(), isbn.getText().toString());
 
+        BookCollection.addBook(newBook);
 
         title.getText().clear();
         author.getText().clear();
