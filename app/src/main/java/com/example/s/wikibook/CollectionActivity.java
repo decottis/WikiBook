@@ -24,17 +24,12 @@ public class CollectionActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ListView bookList = (ListView)findViewById(R.id.bookList);
-        BookCollection books = new BookCollection();
-        books.addBook(new Book("Oui-Oui à la cantine","Oui-oui Himself","Jeunesse","1994","Oui-Oui mange à la cantine","00001"));
-        books.addBook(new Book("Kamasutra","God Himself","Chasse","-870","Recueil","00002"));
-        books.addBook(new Book("Harry Potter et à l'école des sorciers","J.K. Rowling","Jeunesse","1999","Un jeune sorcier découvre la magie","00003"));
-        books.addBook(new Book("Titeuf","Zep","Jeunesse","2005","Tchô !!","00004"));
-        books.addBook(new Book("Asterix","Uderzo","Tout public","1999","Ils sont fou ces romains","00005"));
 
+
+        ListView bookList = (ListView)findViewById(R.id.bookList);
         List<Map<String, String>> l_books = new ArrayList<Map<String, String>>();
 
-        for( Book book : books.getBooks()) {
+        for( Book book : BookCollection.getBooks()) {
             Map<String, String> bookMap = new HashMap<String, String>();
             bookMap.put("img", String.valueOf(R.drawable.icone)); // use available img
             bookMap.put("author", book.getAuthor());
