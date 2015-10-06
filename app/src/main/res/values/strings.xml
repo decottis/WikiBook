@@ -24,5 +24,7 @@
     <string name="hintIsbn">Put the title isbn</string>
     <string name="CreateBook">Create the book</string>
     <string name="BookCreated">Your book has been created</string>
+    <string name="title_activity_action_bar">ActionBar</string>
+    <string name="title_activity_action_bar_book">ActionBarBook</string>
 
 </resources>
