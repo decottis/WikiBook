@@ -34,7 +34,7 @@ public class HomeActivity extends Activity {
 
     public void displayBookFilterCatalog(View view)
     {
-        Intent intent = new Intent(this, FilterCatalogActivity.class);
+        Intent intent = new Intent(this, BookFilterCatalogActivity.class);
         startActivity(intent);
     }
 

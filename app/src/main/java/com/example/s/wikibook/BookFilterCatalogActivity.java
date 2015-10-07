@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Map;
 
 public class BookFilterCatalogActivity extends AppCompatActivity {
-    int lastItemClicked = -1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +24,7 @@ public class BookFilterCatalogActivity extends AppCompatActivity {
 
 
 
-        ListView bookList = (ListView)findViewById(R.id.bookFilterList);
+        ListView bookFilterList = (ListView)findViewById(R.id.bookFilterList);
         List<Map<String, String>> l_filter = new ArrayList<Map<String, String>>();
 
         for( BookFilter bookFilter : BookFilterCatalog.getBookFilters()) {
@@ -42,21 +41,8 @@ public class BookFilterCatalogActivity extends AppCompatActivity {
 
         SimpleAdapter listAdapter = new SimpleAdapter(this.getBaseContext(), l_filter, R.layout.book_filter_detail,
                 new String[] {"name", "author", "title", "gender","isbn", "year", "description"},
-                new int[] {R.id.filterName, R.id.author, R.id.title, R.id.gender, R.id.isbn, R.id.year, R.id.description});
-
-        bookList.setAdapter(listAdapter);
-        /*bookList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position,
-                                    long id) {
-                ActionBar actionBar = getSupportActionBar();
-                actionBar.show();
-                HashMap<String,String> map = (HashMap<String,String>)parent.getItemAtPosition(position);
-                actionBar.setTitle(map.get("title"));
-                lastItemClicked = position;
-                System.out.println(position +"   " + id);
-            }
-        });*/
+                new int[] {R.id.filterName, R.id.filterAuthor, R.id.filterTitle, R.id.filterGender, R.id.filterIsbn, R.id.filterYear, R.id.filterDescription});
+        bookFilterList.setAdapter(listAdapter);
     }
 
 
