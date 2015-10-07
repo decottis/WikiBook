@@ -35,8 +35,16 @@ public class BookFilterCatalog {
     }
 
     public static BookFilter getSelectedBookFilter(){
-
         return selectedBookFilter;
+    }
+
+    public static boolean containsNamedFilter(String name){
+        for(BookFilter bookFilter : filters){
+            if(bookFilter.getName().toLowerCase().equals(name.toLowerCase())){
+                return true;
+            }
+        }
+        return false;
     }
 
     public static void setSelectedBookFilter(BookFilter bookFilter){

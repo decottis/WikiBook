@@ -24,27 +24,27 @@ public class BookFilter{
 
     public boolean isSelected(Book book){
         String tCrit = getCriterion(FilterType.TITLE);
-        if(!book.getTitle().toLowerCase().contains(tCrit.toLowerCase())){
+        if(!book.getTitle().toLowerCase().contains(format(tCrit))){
             return false;
         }
         String tAuthor = getCriterion(FilterType.AUTHOR);
-        if(!book.getAuthor().toLowerCase().contains(tAuthor.toLowerCase())){
+        if(!book.getAuthor().toLowerCase().contains(format(tAuthor))){
             return false;
         }
         String tYEAR = getCriterion(FilterType.YEAR);
-        if(!book.getYear().toLowerCase().contains(tYEAR.toLowerCase())){
+        if(!book.getYear().toLowerCase().contains(format(tYEAR))){
             return false;
         }
         String tGender = getCriterion(FilterType.GENDER);
-        if(!book.getGender().toLowerCase().contains(tGender.toLowerCase())){
+        if(!book.getGender().toLowerCase().contains(format(tGender))){
             return false;
         }
         String tDescription = getCriterion(FilterType.DESCRIPTION);
-        if(!book.getDescription().toLowerCase().contains(tDescription.toLowerCase())){
+        if(!book.getDescription().toLowerCase().contains(format(tDescription))){
             return false;
         }
         String tISBN = getCriterion(FilterType.ISBN);
-        if(!book.getDescription().toLowerCase().contains(tISBN.toLowerCase())){
+        if(!book.getDescription().toLowerCase().contains(format(tISBN))){
             return false;
         }
         return true;
@@ -54,4 +54,7 @@ public class BookFilter{
         return (criteria.get(filterType) != null) ? criteria.get(filterType) : "";
     }
 
+    private static String format(String characters){
+        return characters.trim().toLowerCase();
+    }
 }

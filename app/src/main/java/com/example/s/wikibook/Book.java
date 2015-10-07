@@ -9,12 +9,12 @@ public class Book {
     public int id_img;
 
     public Book(String title, String author, String genre, String year, String description, String isbn, int id_img) {
-        this.title = title;
-        this.author = author;
-        this.genre = genre;
-        this.year = year;
-        this.description = description;
-        this.isbn = isbn;
+        this.title = title.trim();
+        this.author = author.trim();
+        this.genre = genre.trim();
+        this.year = year.trim();
+        this.description = description.trim();
+        this.isbn = isbn.trim();
         this.id_img = id_img;
     }
 
