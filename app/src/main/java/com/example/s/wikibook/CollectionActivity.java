@@ -30,6 +30,12 @@ public class CollectionActivity extends ActionBarActivity {
 
         majListBook();
     }
+    @Override
+    public void onResume() {
+        super.onResume();  // Always call the superclass method first
+        majListBook();
+    }
+
     private void majListBook() {
         ListView bookList = (ListView) findViewById(R.id.bookList);
         List<Map<String, String>> l_books = new ArrayList<Map<String, String>>();
@@ -117,8 +123,10 @@ public class CollectionActivity extends ActionBarActivity {
     }
 
     public void editAction() {
-        Intent intent = new Intent(this, EditBookActivity.class);
-        intent.putExtra(BOOK_TO_EDIT, lastItemClicked);
-        startActivity(intent);
+        if(lastItemClicked != -1) {
+            Intent intent = new Intent(this, EditBookActivity.class);
+            intent.putExtra(BOOK_TO_EDIT, lastItemClicked);
+            startActivity(intent);
+        }
     }
 }

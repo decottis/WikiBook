@@ -116,8 +116,7 @@ public class EditBookActivity extends Activity {
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
 
-        Intent intent = new Intent(this, CollectionActivity.class);
-        startActivity(intent);
+        finish();
     }
 
     @Override
