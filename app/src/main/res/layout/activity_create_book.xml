@@ -158,9 +158,10 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="356dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+
         android:paddingTop="10dp">
 
 
@@ -182,11 +183,12 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=">"
+            android:text="next"
             android:id="@+id/button2"
             android:layout_alignParentBottom="true"
             android:layout_alignLeft="@+id/button"
-            android:layout_alignStart="@+id/button" />
+            android:layout_alignStart="@+id/button"
+            android:paddingLeft="10dp"/>
 
     </LinearLayout>
 
@@ -200,6 +202,7 @@
         android:layout_centerVertical="true"
         android:layout_alignParentStart="true"
         android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingRight="10dp"
         android:layout_gravity="center"/>
 
 

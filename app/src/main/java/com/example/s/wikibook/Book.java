@@ -6,14 +6,28 @@ package com.example.s.wikibook;
 public class Book {
 
     public String title, author, genre, year, description, isbn;
+    public int id_img;
 
-    public Book(String title, String author, String genre, String year, String description, String isbn) {
+    public Book(String title, String author, String genre, String year, String description, String isbn, int id_img) {
         this.title = title;
         this.author = author;
         this.genre = genre;
         this.year = year;
         this.description = description;
         this.isbn = isbn;
+        this.id_img = id_img;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public int getId_img() {
+        return id_img;
+    }
+
+    public void setId_img(int id_img) {
+        this.id_img = id_img;
     }
 
     public void setAuthor(String author) {
