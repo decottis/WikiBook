@@ -13,7 +13,7 @@ public class BookFilterCatalog {
         filters = new ArrayList<BookFilter>();
     }
 
-    private static BookFilter selectedBookFilter;
+    private static int selectedBookFilter;
 
     public static List<BookFilter> getBookFilters(){
 
@@ -40,7 +40,7 @@ public class BookFilterCatalog {
     }
 
     public static BookFilter getSelectedBookFilter(){
-        return selectedBookFilter;
+        return filters.get(selectedBookFilter);
     }
 
     public static boolean containsNamedFilter(String name){
@@ -53,11 +53,11 @@ public class BookFilterCatalog {
     }
 
     public static void setSelectedBookFilter(BookFilter bookFilter){
-       selectedBookFilter = bookFilter;
+       selectedBookFilter = filters.indexOf(bookFilter);
     }
 
     public static void setSelectedBookFilter(int bookFilterId){
-        selectedBookFilter = filters.get(bookFilterId);
+        selectedBookFilter = bookFilterId;
     }
 
     public static boolean isEmpty(){

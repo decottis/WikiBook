@@ -35,13 +35,7 @@ public class BookFilterCatalogActivity extends AppCompatActivity {
     public void majFilterBookList(){
         ListView bookFilterList = (ListView)findViewById(R.id.bookFilterList);
         List<Map<String, String>> l_filter = new ArrayList<Map<String, String>>();
-        checkAnModifyMenuItemsVisibility();
-        if(BookFilterCatalog.isEmpty()){
-            ActionBar actionBar = getSupportActionBar();
-            //actionBar.show();
-            actionBar.setTitle(this.getTitle());
-        } else {
-            for (BookFilter bookFilter : BookFilterCatalog.getBookFilters()) {
+        for (BookFilter bookFilter : BookFilterCatalog.getBookFilters()) {
                 Map<String, String> bookMap = new HashMap<String, String>();
                 bookMap.put("name", bookFilter.getName());
                 bookMap.put("author", bookFilter.getCriterion(BookFilter.FilterType.AUTHOR));
@@ -51,7 +45,6 @@ public class BookFilterCatalogActivity extends AppCompatActivity {
                 bookMap.put("year", bookFilter.getCriterion(BookFilter.FilterType.YEAR));
                 bookMap.put("description", bookFilter.getCriterion(BookFilter.FilterType.DESCRIPTION));
                 l_filter.add(bookMap);
-            }
         }
         SimpleAdapter listAdapter = new SimpleAdapter(this.getBaseContext(), l_filter, R.layout.book_filter_detail,
                 new String[] {"name", "author", "title", "gender","isbn", "year", "description"},
@@ -61,28 +54,31 @@ public class BookFilterCatalogActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
-                ActionBar actionBar = getSupportActionBar();
-                actionBar.show();
-                HashMap<String, String> map = (HashMap<String, String>) parent.getItemAtPosition(position);
-                actionBar.setTitle(map.get("name"));
+                BookFilterCatalog.setSelectedBookFilter(position);
                 lastItemClicked = position;
+                checkAnModifyMenuItemsVisibility();
                 System.out.println(position + "   " + id);
             }
         });
+        checkAnModifyMenuItemsVisibility();
     }
 
     private void checkAnModifyMenuItemsVisibility(){
-        if(BookFilterCatalog.isEmpty()){
+        if(BookFilterCatalog.isEmpty() ||  lastItemClicked == -1){
             if(menu != null) {
                 menu.getItem(0).setVisible(false);
                 menu.getItem(1).setVisible(false);
                 menu.getItem(2).setVisible(false);
+                ActionBar actionBar = getSupportActionBar();
+                actionBar.setTitle(this.getTitle());
             }
         } else {
             if(menu != null) {
                 menu.getItem(0).setVisible(true);
                 menu.getItem(1).setVisible(true);
                 menu.getItem(2).setVisible(true);
+                ActionBar actionBar = getSupportActionBar();
+                actionBar.setTitle(BookFilterCatalog.getSelectedBookFilter().getName());
             }
         }
     }
@@ -128,19 +124,26 @@ public class BookFilterCatalogActivity extends AppCompatActivity {
     }
 
     private void actionDelete(){
-        BookFilterCatalog.removeBookFilter(lastItemClicked);
-        majFilterBookList();
+        if(lastItemClicked != -1) {
+            BookFilterCatalog.removeBookFilter(lastItemClicked);
+            majFilterBookList();
+        }
+        lastItemClicked = -1;
     }
 
     private void actionDisplay(){
-        BookFilterCatalog.setSelectedBookFilter(lastItemClicked);
-        Intent intent = new Intent(this, FiltredCollectionActivity.class);
-        startActivity(intent);
+        if(lastItemClicked != -1) {
+            BookFilterCatalog.setSelectedBookFilter(lastItemClicked);
+            Intent intent = new Intent(this, FiltredCollectionActivity.class);
+            startActivity(intent);
+        }
     }
 
     private void actionEdit(){
-        BookFilterCatalog.setSelectedBookFilter(lastItemClicked);
-        Intent intent = new Intent(this, EditBookFilterActivity.class);
-        startActivity(intent);
+        if(lastItemClicked != -1) {
+            BookFilterCatalog.setSelectedBookFilter(lastItemClicked);
+            Intent intent = new Intent(this, EditBookFilterActivity.class);
+            startActivity(intent);
+        }
     }
 }

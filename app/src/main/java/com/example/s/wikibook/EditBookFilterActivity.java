@@ -15,6 +15,7 @@ import java.util.Map;
 public class EditBookFilterActivity extends AppCompatActivity {
 
     private String nameFilter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +79,6 @@ public class EditBookFilterActivity extends AppCompatActivity {
 
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
-            finish();
         } else {
             BookFilter toChange = BookFilterCatalog.getSelectedBookFilter();
             int index = BookFilterCatalog.removeBookFilter(toChange);
@@ -98,6 +98,7 @@ public class EditBookFilterActivity extends AppCompatActivity {
 
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
+            finish();
         }
     }
 
