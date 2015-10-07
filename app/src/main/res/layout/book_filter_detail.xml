@@ -12,7 +12,7 @@
         android:layout_weight="1">
 
         <TextView
-            android:id="@+id/name"
+            android:id="@+id/filterName"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:textSize="16sp"
@@ -20,7 +20,7 @@
             />
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/filterTitle"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:textSize="16sp"
@@ -28,35 +28,37 @@
             />
 
         <TextView
-            android:id="@+id/author"
+            android:id="@+id/filterAuthor"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             />
 
         <TextView
-            android:id="@+id/gender"
+            android:id="@+id/filterGender"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             />
 
         <TextView
-            android:id="@+id/description"
+            android:id="@+id/filterDescription"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             />
 
         <TextView
-            android:id="@+id/year"
+            android:id="@+id/filterYear"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             />
 
 
         <TextView
-            android:id="@+id/isbn"
+            android:id="@+id/filterIsbn"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             />
+
+
 
 
 

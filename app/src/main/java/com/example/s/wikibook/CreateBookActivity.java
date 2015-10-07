@@ -6,12 +6,19 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageSwitcher;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
+import android.widget.ViewSwitcher;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,10 +26,50 @@ import java.util.Map;
 
 public class CreateBookActivity extends Activity {
 
+    private ImageSwitcher switcher;
+    private Button b1, b2;
+    private int[] drawables = new int[]{R.drawable.icone, R.drawable.icone2};
+    private int cpt = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_book);
+
+        switcher = (ImageSwitcher)findViewById(R.id.imageSwitcher1);
+        b1 = (Button) findViewById(R.id.button);
+        b2 = (Button) findViewById(R.id.button2);
+
+        //init the Image switcher
+
+        switcher.setFactory(new ViewSwitcher.ViewFactory() {
+            public View makeView() {
+                ImageView myView = new ImageView(getApplicationContext());
+                return myView;
+            }
+        });
+
+        switcher.setImageResource(drawables[cpt]);
+
+        Animation in = AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left);
+        Animation out = AnimationUtils.loadAnimation(this, android.R.anim.slide_out_right);
+        switcher.setInAnimation(in);
+        switcher.setOutAnimation(out);
+
+        //button next/previous image
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setDrawable("previous", cpt);
+            }
+        });
+
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setDrawable("next", cpt);
+            }
+        });
     }
 
     public void createBook(View view)
@@ -73,5 +120,29 @@ public class CreateBookActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void setDrawable(String type, int cpt)
+    {
+        switch (type) {
+            case "previous" : {
+                if (cpt - 1 < 0) {
+                    cpt = drawables.length - 1;
+                    switcher.setImageResource(drawables[cpt]);
+                } else {
+                    cpt--;
+                    switcher.setImageResource(cpt);
+                }
+            }
+            case "next" : {
+                if (cpt + 1 > drawables.length - 1) {
+                    cpt = 0;
+                    switcher.setImageResource(drawables[cpt]);
+                } else {
+                    cpt++;
+                    switcher.setImageResource(cpt);
+                }
+            }
+        }
     }
 }
