@@ -74,6 +74,7 @@ public class CreateBookActivity extends Activity {
 
     public void createBook(View view)
     {
+
         EditText title = (EditText)findViewById(R.id.EditTitle);
         EditText author = (EditText)findViewById(R.id.EditAuthor);
         EditText description = (EditText)findViewById(R.id.EditDescription);
@@ -81,7 +82,21 @@ public class CreateBookActivity extends Activity {
         EditText genre = (EditText)findViewById(R.id.EditGenre);
         EditText isbn = (EditText)findViewById(R.id.EditIsbn);
 
-        Book newBook = new Book(title.getText().toString(), author.getText().toString(), genre.getText().toString(), year.getText().toString(), description.getText().toString(), isbn.getText().toString(), drawables[cpt]);
+        String s_title = (!title.getText().toString().isEmpty()) ? title.getText().toString() : getResources().getString(R.string.u_title);
+        String s_author = (!author.getText().toString().isEmpty()) ? author.getText().toString() : getResources().getString(R.string.u_author);
+        String s_description = (!description.getText().toString().isEmpty()) ? description.getText().toString() : getResources().getString(R.string.u_description);
+        String s_year= (!year.getText().toString().isEmpty()) ? year.getText().toString() : getResources().getString(R.string.u_year);
+        String s_genre = (!genre.getText().toString().isEmpty()) ? genre.getText().toString() : getResources().getString(R.string.u_genre);
+        String s_isbn = (!isbn.getText().toString().isEmpty()) ? isbn.getText().toString() : getResources().getString(R.string.u_isbn);
+
+        Book newBook = new Book(s_title,
+                                s_author,
+                                s_description,
+                                s_year,
+                                s_genre,
+                                s_isbn,
+                                drawables[cpt]);
+
 
         BookCollection.addBook(newBook);
 
