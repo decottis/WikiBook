@@ -91,7 +91,7 @@ public class CreateBookActivity extends Activity {
         year.getText().clear();
         genre.getText().clear();
         isbn.getText().clear();
-        this.cpt = 0;
+
 
         Context context = getApplicationContext();
         CharSequence text = "Your book has been created";

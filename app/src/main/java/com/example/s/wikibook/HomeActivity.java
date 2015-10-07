@@ -20,13 +20,13 @@ public class HomeActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         if(!booksInitialized){
-            books.addBook(new Book("Oui-Oui à la cantine","Oui-oui Himself","Jeunesse","1994","Oui-Oui mange à la cantine","00001"));
-            books.addBook(new Book("Kamasutra","God Himself","Chasse","-870","Recueil","00002"));
-            books.addBook(new Book("Harry Potter et à l'école des sorciers","J.K. Rowling","Jeunesse","1992","Un jeune sorcier découvre la magie","00003"));
-            books.addBook(new Book("Harry Potter et la chambre des secrets","J.K. Rowling","Jeunesse","1994","La chambre des secrets est ouverte ...","00004"));
-            books.addBook(new Book("Harry Potter et le prisonnier d'Askaban","J.K. Rowling","Jeunesse","1999","Harry rencontre son oncle...","00005"));
-            books.addBook(new Book("Titeuf","Zep","Jeunesse","2005","Tchô !!","00006"));
-            books.addBook(new Book("Asterix","Uderzo","Tout public","1999","Ils sont fou ces romains","00007"));
+            books.addBook(new Book("Oui-Oui à la cantine","Oui-oui Himself","Jeunesse","1994","Oui-Oui mange à la cantine","00001", R.drawable.icone));
+            books.addBook(new Book("Kamasutra","God Himself","Chasse","-870","Recueil","00002",R.drawable.icone));
+            books.addBook(new Book("Harry Potter et à l'école des sorciers","J.K. Rowling","Jeunesse","1992","Un jeune sorcier découvre la magie","00003",R.drawable.icone));
+            books.addBook(new Book("Harry Potter et la chambre des secrets","J.K. Rowling","Jeunesse","1994","La chambre des secrets est ouverte ...","00004",R.drawable.icone));
+            books.addBook(new Book("Harry Potter et le prisonnier d'Askaban","J.K. Rowling","Jeunesse","1999","Harry rencontre son oncle...","00005",R.drawable.icone));
+            books.addBook(new Book("Titeuf","Zep","Jeunesse","2005","Tchô !!","00006",R.drawable.icone));
+            books.addBook(new Book("Asterix","Uderzo","Tout public","1999","Ils sont fou ces romains","00007",R.drawable.icone));
             booksInitialized = true;
         }
     }
