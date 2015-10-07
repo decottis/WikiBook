@@ -39,22 +39,31 @@ public class CreateBookFilterActivity extends AppCompatActivity {
 
         BookFilter newBookFilter = new BookFilter(name.getText().toString(),criteria);
 
-        BookFilterCatalog.addBookFilter(newBookFilter);
+        if(BookFilterCatalog.containsNamedFilter(name.getText().toString().trim())){
+            Context context = getApplicationContext();
+            CharSequence text = "Your book filter already exist. Change the filter name !";
+            int duration = Toast.LENGTH_LONG;
 
-        name.getText().clear();
-        title.getText().clear();
-        author.getText().clear();
-        description.getText().clear();
-        year.getText().clear();
-        genre.getText().clear();
-        isbn.getText().clear();
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        } else {
+            BookFilterCatalog.addBookFilter(newBookFilter);
 
-        Context context = getApplicationContext();
-        CharSequence text = "Your book filter has been created";
-        int duration = Toast.LENGTH_LONG;
+            name.getText().clear();
+            title.getText().clear();
+            author.getText().clear();
+            description.getText().clear();
+            year.getText().clear();
+            genre.getText().clear();
+            isbn.getText().clear();
 
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
+            Context context = getApplicationContext();
+            CharSequence text = "Your book filter has been created";
+            int duration = Toast.LENGTH_LONG;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
     }
 
     @Override

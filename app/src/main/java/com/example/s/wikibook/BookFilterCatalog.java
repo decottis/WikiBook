@@ -29,9 +29,14 @@ public class BookFilterCatalog {
         filters.add(location, bookFilter);
     }
 
-    public static void removeBookFilter(int filterId){
+    public static BookFilter removeBookFilter(int filterId){
+        return filters.remove(filterId);
+    }
 
-        filters.remove(filterId);
+    public static int removeBookFilter(BookFilter bookFilter){
+        int index = filters.indexOf(bookFilter);
+        filters.remove(bookFilter);
+        return index;
     }
 
     public static BookFilter getSelectedBookFilter(){

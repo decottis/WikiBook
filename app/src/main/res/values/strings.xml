@@ -41,11 +41,13 @@
     <string name="EditBook">Edit the book</string>
     <string name="BookCreated">Your book has been created</string>
     <string name="CreateBookFilter">Create the book filter</string>
+    <string name="EditBookFilter">Edit the book filter</string>
     <string name="BookFilterCreated">Your book filter has been created</string>
     <string name="title_activity_action_bar">ActionBar</string>
     <string name="title_activity_action_bar_book">ActionBarBook</string>
     <string name="title_activity_create_book_filter">CreateBookFilterActivity</string>
     <string name="title_activity_book_filter_catalog">BookFilterCatalogActivity</string>
     <string name="title_activity_filtred_collection">FiltredCollectionActivity</string>
+    <string name="title_activity_edit_book_filter">EditBookFilterActivity</string>
 
 </resources>

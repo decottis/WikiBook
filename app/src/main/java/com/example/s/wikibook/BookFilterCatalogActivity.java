@@ -26,6 +26,12 @@ public class BookFilterCatalogActivity extends AppCompatActivity {
         majFilterBookList();
     }
 
+    @Override
+    protected void onResume(){
+        super.onResume();
+        majFilterBookList();
+    }
+
     public void majFilterBookList(){
         ListView bookFilterList = (ListView)findViewById(R.id.bookFilterList);
         List<Map<String, String>> l_filter = new ArrayList<Map<String, String>>();
@@ -108,6 +114,11 @@ public class BookFilterCatalogActivity extends AppCompatActivity {
             return true;
         }
 
+        if (id == R.id.filter_action_edit) {
+            actionEdit();
+            return true;
+        }
+
         if (id == R.id.filter_action_del) {
             actionDelete();
             return true;
@@ -124,6 +135,12 @@ public class BookFilterCatalogActivity extends AppCompatActivity {
     private void actionDisplay(){
         BookFilterCatalog.setSelectedBookFilter(lastItemClicked);
         Intent intent = new Intent(this, FiltredCollectionActivity.class);
+        startActivity(intent);
+    }
+
+    private void actionEdit(){
+        BookFilterCatalog.setSelectedBookFilter(lastItemClicked);
+        Intent intent = new Intent(this, EditBookFilterActivity.class);
         startActivity(intent);
     }
 }
