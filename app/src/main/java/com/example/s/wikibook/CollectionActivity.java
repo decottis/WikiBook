@@ -1,10 +1,10 @@
 package com.example.s.wikibook;
 
-import android.content.Intent;
+import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.internal.view.menu.ActionMenuItemView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,22 +19,18 @@ import java.util.List;
 import java.util.Map;
 
 public class CollectionActivity extends ActionBarActivity {
-
-    final String BOOK_TO_EDIT = "book_edit";
     int lastItemClicked = -1;
+    private String[] mNavigationDrawerItemTitles;
+    private DrawerLayout mDrawerLayout;
+    private ListView mDrawerList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_collection);
+        setContentView(R.layout.activity_main);
 
         majListBook();
     }
-    @Override
-    public void onResume() {
-        super.onResume();  // Always call the superclass method first
-        majListBook();
-    }
-
     private void majListBook() {
         ListView bookList = (ListView) findViewById(R.id.bookList);
         List<Map<String, String>> l_books = new ArrayList<Map<String, String>>();
@@ -62,10 +58,11 @@ public class CollectionActivity extends ActionBarActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
                 ActionBar actionBar = getSupportActionBar();
-                HashMap<String, String> map = (HashMap<String, String>) parent.getItemAtPosition(position);
+                actionBar.show();
+                HashMap<String,String> map = (HashMap<String,String>)parent.getItemAtPosition(position);
                 actionBar.setTitle(map.get("title"));
                 lastItemClicked = position;
-                System.out.println(position + "   " + id);
+                System.out.println(position +"   " + id);
             }
         });
     }
@@ -74,13 +71,10 @@ public class CollectionActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu items for use in the action bar
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_action_bar_book, menu);
-
-        if(BookCollection.getBooks().size() == 0) {
-            menu.getItem(0).setVisible(false);
-            menu.getItem(1).setVisible(false);
-        }
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -97,35 +91,15 @@ public class CollectionActivity extends ActionBarActivity {
             deleteAction();
             return true;
         }
-        if(id == R.id.action_edit) {
-            editAction();
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
 
     public void deleteAction() {
-        if(lastItemClicked != -1) {
-            BookCollection.getBooks().remove(lastItemClicked);
-            majListBook();
-            ActionBar actionBar = getSupportActionBar();
-            actionBar.setTitle("WikiBook");
-            if (BookCollection.getBooks().size() == 0) {
-                ActionMenuItemView menuItem = (ActionMenuItemView) findViewById(R.id.action_del);
-                menuItem.setVisibility(View.INVISIBLE);
-                menuItem = (ActionMenuItemView) findViewById(R.id.action_edit);
-                menuItem.setVisibility(View.INVISIBLE);
-            }
-            lastItemClicked = -1;
-        }
-    }
-
-    public void editAction() {
-        if(lastItemClicked != -1) {
-            Intent intent = new Intent(this, EditBookActivity.class);
-            intent.putExtra(BOOK_TO_EDIT, lastItemClicked);
-            startActivity(intent);
-        }
+        BookCollection.getBooks().remove(lastItemClicked);
+        majListBook();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("");
+        actionBar.hide();
     }
 }
