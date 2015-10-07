@@ -12,7 +12,7 @@
     <string name="collection">Display my collection</string>
     <string name="filters">Display my filters</string>
 
-
+    <string name="title_activity_edit_book_filter">EditBookFilterActivity</string>
 
     <string name="name">Filter Name</string>
     <string name="title">Title</string>
