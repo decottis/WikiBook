@@ -2,7 +2,7 @@ package com.example.s.wikibook;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,12 +16,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class FilterCatalogActivity extends ActionBarActivity {
+public class BookFilterCatalogActivity extends AppCompatActivity {
     int lastItemClicked = -1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         ListView bookList = (ListView)findViewById(R.id.bookFilterList);
         List<Map<String, String>> l_filter = new ArrayList<Map<String, String>>();
@@ -37,20 +39,20 @@ public class FilterCatalogActivity extends ActionBarActivity {
             bookMap.put("description", bookFilter.getCriterion(BookFilter.FilterType.DESCRIPTION));
             l_filter.add(bookMap);
         }
-        
+
         SimpleAdapter listAdapter = new SimpleAdapter(this.getBaseContext(), l_filter, R.layout.book_filter_detail,
                 new String[] {"name", "author", "title", "gender","isbn", "year", "description"},
-                new int[] {R.id.name, R.id.author, R.id.title, R.id.gender, R.id.isbn, R.id.year, R.id.description});
+                new int[] {R.id.filterName, R.id.author, R.id.title, R.id.gender, R.id.isbn, R.id.year, R.id.description});
 
-       /* bookList.setAdapter(listAdapter);
-        bookList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        bookList.setAdapter(listAdapter);
+        /*bookList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
                 ActionBar actionBar = getSupportActionBar();
                 actionBar.show();
                 HashMap<String,String> map = (HashMap<String,String>)parent.getItemAtPosition(position);
-                actionBar.setTitle(map.get("name"));
+                actionBar.setTitle(map.get("title"));
                 lastItemClicked = position;
                 System.out.println(position +"   " + id);
             }
