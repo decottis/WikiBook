@@ -28,16 +28,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ActionBar"
-            android:label="@string/title_activity_action_bar" >
-        </activity>
-        <activity
             android:name=".ActionBarBook"
             android:label="@string/title_activity_action_bar_book" >
         </activity>
         <activity
             android:name=".CreateBookFilterActivity"
             android:label="@string/title_activity_create_book_filter" >
+        </activity>
+        <activity
+            android:name=".BookFilterCatalogActivity"
+            android:label="@string/title_activity_book_filter_catalog" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
         </activity>
     </application>
 
