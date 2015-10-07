@@ -1,5 +1,6 @@
 package com.example.s.wikibook;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,6 +23,10 @@ public class BookFilterCatalogActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_filter_catalog);
+        majFilterBookList();
+    }
+
+    public void majFilterBookList(){
         ListView bookFilterList = (ListView)findViewById(R.id.bookFilterList);
         List<Map<String, String>> l_filter = new ArrayList<Map<String, String>>();
 
@@ -89,10 +94,13 @@ public class BookFilterCatalogActivity extends AppCompatActivity {
     }
 
     private void actionDelete(){
-
+        BookFilterCatalog.getBookFilters().remove(lastItemClicked);
+        majFilterBookList();
     }
 
     private void actionDisplay(){
-
+        BookFilterCatalog.setSelectedBookFilter(lastItemClicked);
+        Intent intent = new Intent(this, FiltredCollectionActivity.class);
+        startActivity(intent);
     }
 }

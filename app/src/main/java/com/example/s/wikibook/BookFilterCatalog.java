@@ -35,4 +35,8 @@ public class BookFilterCatalog {
        selectedBookFilter = bookFilter;
     }
 
+    public static void setSelectedBookFilter(int bookFilterId){
+        selectedBookFilter = filters.get(bookFilterId);
+    }
+
 }
