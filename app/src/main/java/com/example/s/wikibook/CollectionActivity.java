@@ -3,6 +3,7 @@ package com.example.s.wikibook;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,7 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CollectionActivity extends ActionBarActivity {
+public class CollectionActivity extends AppCompatActivity {
     int lastItemClicked = -1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

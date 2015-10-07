@@ -42,7 +42,7 @@ public class FilterCatalogActivity extends ActionBarActivity {
                 new String[] {"name", "author", "title", "gender","isbn", "year", "description"},
                 new int[] {R.id.name, R.id.author, R.id.title, R.id.gender, R.id.isbn, R.id.year, R.id.description});
 
-        bookList.setAdapter(listAdapter);
+       /* bookList.setAdapter(listAdapter);
         bookList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
@@ -54,7 +54,7 @@ public class FilterCatalogActivity extends ActionBarActivity {
                 lastItemClicked = position;
                 System.out.println(position +"   " + id);
             }
-        });
+        });*/
     }
 
 
