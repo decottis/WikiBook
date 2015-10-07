@@ -1,9 +1,8 @@
 package com.example.s.wikibook;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,7 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CollectionActivity extends ActionBarActivity {
+public class BookFilterCatalogActivity extends AppCompatActivity {
     int lastItemClicked = -1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,31 +24,28 @@ public class CollectionActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
 
-        majListBook();
-    }
-    private void majListBook() {
-        ListView bookList = (ListView) findViewById(R.id.bookList);
-        List<Map<String, String>> l_books = new ArrayList<Map<String, String>>();
 
-        for (Book book : BookCollection.getBooks()) {
+        ListView bookList = (ListView)findViewById(R.id.bookFilterList);
+        List<Map<String, String>> l_filter = new ArrayList<Map<String, String>>();
+
+        for( BookFilter bookFilter : BookFilterCatalog.getBookFilters()) {
             Map<String, String> bookMap = new HashMap<String, String>();
-            bookMap.put("img", String.valueOf(R.drawable.icone)); // use available img
-            bookMap.put("author", book.getAuthor());
-            bookMap.put("title", book.getTitle());
-            bookMap.put("gender", book.getGender());
-            bookMap.put("isbn", book.getIsbn());
-            bookMap.put("year", book.getYear());
-            bookMap.put("description", book.getDescription());
-            l_books.add(bookMap);
+            bookMap.put("name", bookFilter.getName());
+            bookMap.put("author", bookFilter.getCriterion(BookFilter.FilterType.AUTHOR));
+            bookMap.put("title", bookFilter.getCriterion(BookFilter.FilterType.TITLE));
+            bookMap.put("gender", bookFilter.getCriterion(BookFilter.FilterType.GENDER));
+            bookMap.put("isbn", bookFilter.getCriterion(BookFilter.FilterType.ISBN));
+            bookMap.put("year", bookFilter.getCriterion(BookFilter.FilterType.YEAR));
+            bookMap.put("description", bookFilter.getCriterion(BookFilter.FilterType.DESCRIPTION));
+            l_filter.add(bookMap);
         }
 
-        SimpleAdapter listAdapter = new SimpleAdapter(this.getBaseContext(), l_books, R.layout.book_detail,
-                /*ajout gender*/
-                new String[] {"img", "author", "title", "gender", "isbn", "year", "description"},
-                new int[] {R.id.img_cover, R.id.author, R.id.title, R.id.gender, R.id.isbn, R.id.year, R.id.description});
+        SimpleAdapter listAdapter = new SimpleAdapter(this.getBaseContext(), l_filter, R.layout.book_filter_detail,
+                new String[] {"name", "author", "title", "gender","isbn", "year", "description"},
+                new int[] {R.id.filterName, R.id.author, R.id.title, R.id.gender, R.id.isbn, R.id.year, R.id.description});
 
         bookList.setAdapter(listAdapter);
-        bookList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        /*bookList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
@@ -60,7 +56,7 @@ public class CollectionActivity extends ActionBarActivity {
                 lastItemClicked = position;
                 System.out.println(position +"   " + id);
             }
-        });
+        });*/
     }
 
 
@@ -83,19 +79,10 @@ public class CollectionActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_del) {
-            deleteAction();
+        if (id == R.id.action_settings) {
             return true;
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void deleteAction() {
-        BookCollection.getBooks().remove(lastItemClicked);
-        majListBook();
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("");
-        actionBar.hide();
     }
 }

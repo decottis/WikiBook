@@ -25,4 +25,22 @@
         android:layout_centerVertical="true"
         android:layout_alignParentStart="true" />
 
+    <Button
+        android:id="@+id/btn_book_filter_catalog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="displayBookFilterCatalog"
+        android:text="@string/filters"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/BookFilterCreator"
+        android:id="@+id/btn_create_filter"
+        android:onClick="displayBookFilterCreator"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
+
 </LinearLayout>

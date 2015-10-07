@@ -12,6 +12,7 @@ import android.widget.Toast;
 public class HomeActivity extends Activity {
 
     BookCollection books;
+    BookFilterCatalog filters;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,18 @@ public class HomeActivity extends Activity {
     public void displayBookCreator(View view)
     {
         Intent intent = new Intent(this, CreateBookActivity.class);
+        startActivity(intent);
+    }
+
+    public void displayBookFilterCatalog(View view)
+    {
+        Intent intent = new Intent(this, FilterCatalogActivity.class);
+        startActivity(intent);
+    }
+
+    public void displayBookFilterCreator(View view)
+    {
+        Intent intent = new Intent(this, CreateBookFilterActivity.class);
         startActivity(intent);
     }
 

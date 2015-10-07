@@ -16,6 +16,10 @@ public class Book {
         this.isbn = isbn;
     }
 
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
     public String getIsbn() {
         return isbn;
     }
@@ -40,7 +44,7 @@ public class Book {
         this.author = autor;
     }
 
-    public String getGenre() {
+    public String getGender() {
         return genre;
     }
 

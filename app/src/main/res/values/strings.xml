@@ -7,8 +7,11 @@
     <string name="title_activity_create_book">CreateBookActivity</string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="BookCreator">Create a book</string>
+    <string name="BookFilterCreator">Create a book filter</string>
     <string name="collection">Display my collection</string>
+    <string name="filters">Display my filters</string>
 
+    <string name="name">Filter Name</string>
     <string name="title">Title</string>
     <string name="author">Author</string>
     <string name="genre">Genre</string>
@@ -16,6 +19,7 @@
     <string name="description">Description</string>
     <string name="isbn">ISBN</string>
 
+    <string name="hintName">Put the filter name here</string>
     <string name="hintTitle">Put the title here</string>
     <string name="hintAuthor">Put the author here</string>
     <string name="hintGenre">Put the genre here</string>
@@ -24,7 +28,10 @@
     <string name="hintIsbn">Put the title isbn</string>
     <string name="CreateBook">Create the book</string>
     <string name="BookCreated">Your book has been created</string>
+    <string name="CreateBookFilter">Create the book filter</string>
+    <string name="BookFilterCreated">Your book filter has been created</string>
     <string name="title_activity_action_bar">ActionBar</string>
     <string name="title_activity_action_bar_book">ActionBarBook</string>
+    <string name="title_activity_create_book_filter">CreateBookFilterActivity</string>
 
 </resources>
