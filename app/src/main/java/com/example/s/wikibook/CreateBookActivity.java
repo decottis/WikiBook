@@ -29,7 +29,7 @@ public class CreateBookActivity extends Activity {
     private ImageSwitcher switcher;
     private Button b1, b2;
     private int[] drawables = new int[]{R.drawable.icone, R.drawable.icone2};
-    private int cpt = 0;
+    public int cpt = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,14 +60,14 @@ public class CreateBookActivity extends Activity {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setDrawable("previous", cpt);
+                setDrawable("previous");
             }
         });
 
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setDrawable("next", cpt);
+                setDrawable("next");
             }
         });
     }
@@ -81,7 +81,7 @@ public class CreateBookActivity extends Activity {
         EditText genre = (EditText)findViewById(R.id.EditGenre);
         EditText isbn = (EditText)findViewById(R.id.EditIsbn);
 
-        Book newBook = new Book(title.getText().toString(), author.getText().toString(), genre.getText().toString(), year.getText().toString(), description.getText().toString(), isbn.getText().toString());
+        Book newBook = new Book(title.getText().toString(), author.getText().toString(), genre.getText().toString(), year.getText().toString(), description.getText().toString(), isbn.getText().toString(), drawables[cpt]);
 
         BookCollection.addBook(newBook);
 
@@ -91,6 +91,7 @@ public class CreateBookActivity extends Activity {
         year.getText().clear();
         genre.getText().clear();
         isbn.getText().clear();
+        this.cpt = 0;
 
         Context context = getApplicationContext();
         CharSequence text = "Your book has been created";
@@ -122,27 +123,24 @@ public class CreateBookActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void setDrawable(String type, int cpt)
+    public void setDrawable(String type)
     {
-        switch (type) {
-            case "previous" : {
-                if (cpt - 1 < 0) {
-                    cpt = drawables.length - 1;
-                    switcher.setImageResource(drawables[cpt]);
-                } else {
-                    cpt--;
-                    switcher.setImageResource(cpt);
-                }
+        if(type.equals("previous")) {
+            if (this.cpt - 1 >= 0) {
+                this.cpt--;
+
+            } else {
+                this.cpt = drawables.length -1;
             }
-            case "next" : {
-                if (cpt + 1 > drawables.length - 1) {
-                    cpt = 0;
-                    switcher.setImageResource(drawables[cpt]);
-                } else {
-                    cpt++;
-                    switcher.setImageResource(cpt);
-                }
+
+        } else {
+            if (this.cpt + 1 < drawables.length) {
+                this.cpt++;
+
+            } else {
+                this.cpt = 0;
             }
         }
+        switcher.setImageResource(drawables[this.cpt]);
     }
 }

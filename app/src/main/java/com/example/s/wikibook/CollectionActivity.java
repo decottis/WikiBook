@@ -33,7 +33,7 @@ public class CollectionActivity extends ActionBarActivity {
 
         for (Book book : BookCollection.getBooks()) {
             Map<String, String> bookMap = new HashMap<String, String>();
-            bookMap.put("img", String.valueOf(R.drawable.icone)); // use available img
+            bookMap.put("img", String.valueOf(book.getId_img())); // use available img
             bookMap.put("author", book.getAuthor());
             bookMap.put("title", book.getTitle());
             bookMap.put("gender", book.getGender());
