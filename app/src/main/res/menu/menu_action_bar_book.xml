@@ -1,13 +1,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:WikiBook="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/description"
-        android:title=""
-        WikiBook:showAsAction="always"/>
-    <item android:id="@+id/action_search"
+    <item android:id="@+id/action_edit"
         android:icon="@drawable/edit"
         android:title="@string/isbn"
         WikiBook:showAsAction="always"/>
-    <item android:id="@+id/action_compose"
+    <item android:id="@+id/action_del"
         android:icon="@drawable/supprimer"
         android:title="@string/genre"
         WikiBook:showAsAction="always"/>

@@ -25,11 +25,13 @@ public class CollectionActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
 
-
-        ListView bookList = (ListView)findViewById(R.id.bookList);
+        majListBook();
+    }
+    private void majListBook() {
+        ListView bookList = (ListView) findViewById(R.id.bookList);
         List<Map<String, String>> l_books = new ArrayList<Map<String, String>>();
 
-        for( Book book : BookCollection.getBooks()) {
+        for (Book book : BookCollection.getBooks()) {
             Map<String, String> bookMap = new HashMap<String, String>();
             bookMap.put("img", String.valueOf(R.drawable.icone)); // use available img
             bookMap.put("author", book.getAuthor());
@@ -39,10 +41,10 @@ public class CollectionActivity extends ActionBarActivity {
             bookMap.put("description", book.getDescription());
             l_books.add(bookMap);
         }
-        
+
         SimpleAdapter listAdapter = new SimpleAdapter(this.getBaseContext(), l_books, R.layout.book_detail,
-                new String[] {"img", "author", "title", "isbn", "year", "description"},
-                new int[] {R.id.img_cover, R.id.author, R.id.title, R.id.isbn, R.id.year, R.id.description});
+                new String[]{"img", "author", "title", "isbn", "year", "description"},
+                new int[]{R.id.img_cover, R.id.author, R.id.title, R.id.isbn, R.id.year, R.id.description});
 
         bookList.setAdapter(listAdapter);
         bookList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -51,15 +53,13 @@ public class CollectionActivity extends ActionBarActivity {
                                     long id) {
                 ActionBar actionBar = getSupportActionBar();
                 actionBar.show();
-                HashMap<String,String> map = (HashMap<String,String>)parent.getItemAtPosition(position);
+                HashMap<String, String> map = (HashMap<String, String>) parent.getItemAtPosition(position);
                 actionBar.setTitle(map.get("title"));
                 lastItemClicked = position;
-                System.out.println(position +"   " + id);
+                System.out.println(position + "   " + id);
             }
         });
     }
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu items for use in the action bar
@@ -79,10 +79,19 @@ public class CollectionActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_del) {
+            deleteAction();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void deleteAction() {
+        BookCollection.getBooks().remove(lastItemClicked);
+        majListBook();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("");
+        actionBar.hide();
     }
 }
