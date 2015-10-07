@@ -1,13 +1,9 @@
 package com.example.s.wikibook;
 
-import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -17,11 +13,11 @@ import java.util.List;
 import java.util.Map;
 
 public class BookFilterCatalogActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
+        setContentView(R.layout.activity_book_filter_catalog);
         ListView bookFilterList = (ListView)findViewById(R.id.bookFilterList);
         List<Map<String, String>> l_filter = new ArrayList<Map<String, String>>();
 
@@ -43,16 +39,11 @@ public class BookFilterCatalogActivity extends AppCompatActivity {
         bookFilterList.setAdapter(listAdapter);
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu items for use in the action bar
-        /*ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_action_bar_book, menu);*/
-
-        return super.onCreateOptionsMenu(menu);
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_book_filter_catalog, menu);
+        return true;
     }
 
     @Override
@@ -60,13 +51,13 @@ public class BookFilterCatalogActivity extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-       /* int id = item.getItemId();
+        int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
-*/
+
         return super.onOptionsItemSelected(item);
     }
 }
