@@ -43,6 +43,10 @@
             android:name=".FiltredCollectionActivity"
             android:label="@string/title_activity_filtred_collection" >
         </activity>
+        <activity
+            android:name=".EditBookActivity"
+            android:label="@string/title" >
+        </activity>
     </application>
 
 </manifest>

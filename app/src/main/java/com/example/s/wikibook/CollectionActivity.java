@@ -1,9 +1,11 @@
 package com.example.s.wikibook;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.internal.view.menu.ActionMenuItemView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,12 +20,13 @@ import java.util.List;
 import java.util.Map;
 
 public class CollectionActivity extends ActionBarActivity {
+
+    final String BOOK_TO_EDIT = "book_edit";
     int lastItemClicked = -1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         majListBook();
     }
@@ -54,11 +57,10 @@ public class CollectionActivity extends ActionBarActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
                 ActionBar actionBar = getSupportActionBar();
-                actionBar.show();
-                HashMap<String,String> map = (HashMap<String,String>)parent.getItemAtPosition(position);
+                HashMap<String, String> map = (HashMap<String, String>) parent.getItemAtPosition(position);
                 actionBar.setTitle(map.get("title"));
                 lastItemClicked = position;
-                System.out.println(position +"   " + id);
+                System.out.println(position + "   " + id);
             }
         });
     }
@@ -67,10 +69,13 @@ public class CollectionActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu items for use in the action bar
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_action_bar_book, menu);
+
+        if(BookCollection.getBooks().size() == 0) {
+            menu.getItem(0).setVisible(false);
+            menu.getItem(1).setVisible(false);
+        }
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -87,15 +92,33 @@ public class CollectionActivity extends ActionBarActivity {
             deleteAction();
             return true;
         }
+        if(id == R.id.action_edit) {
+            editAction();
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
 
     public void deleteAction() {
-        BookCollection.getBooks().remove(lastItemClicked);
-        majListBook();
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("");
-        actionBar.hide();
+        if(lastItemClicked != -1) {
+            BookCollection.getBooks().remove(lastItemClicked);
+            majListBook();
+            ActionBar actionBar = getSupportActionBar();
+            actionBar.setTitle("WikiBook");
+            if (BookCollection.getBooks().size() == 0) {
+                ActionMenuItemView menuItem = (ActionMenuItemView) findViewById(R.id.action_del);
+                menuItem.setVisibility(View.INVISIBLE);
+                menuItem = (ActionMenuItemView) findViewById(R.id.action_edit);
+                menuItem.setVisibility(View.INVISIBLE);
+            }
+            lastItemClicked = -1;
+        }
+    }
+
+    public void editAction() {
+        Intent intent = new Intent(this, EditBookActivity.class);
+        intent.putExtra(BOOK_TO_EDIT, lastItemClicked);
+        startActivity(intent);
     }
 }

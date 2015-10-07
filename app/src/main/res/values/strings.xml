@@ -6,6 +6,7 @@
     <string name="book_img">Cover</string>
     <string name="title_activity_create_book">CreateBookActivity</string>
     <string name="title_activity_home">HomeActivity</string>
+    <string name="title_edit_book_activity">EditActivity</string>
     <string name="BookCreator">Create a book</string>
     <string name="BookFilterCreator">Create a book filter</string>
     <string name="collection">Display my collection</string>
@@ -29,6 +30,7 @@
     <string name="hintDescription">Put the description here</string>
     <string name="hintIsbn">Put the title isbn</string>
     <string name="CreateBook">Create the book</string>
+    <string name="EditBook">Edit the book</string>
     <string name="BookCreated">Your book has been created</string>
     <string name="CreateBookFilter">Create the book filter</string>
     <string name="BookFilterCreated">Your book filter has been created</string>
