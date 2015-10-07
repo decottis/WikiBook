@@ -1,9 +1,12 @@
 package com.example.s.wikibook;
 
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -13,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 public class BookFilterCatalogActivity extends AppCompatActivity {
+    private int lastItemClicked = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +41,18 @@ public class BookFilterCatalogActivity extends AppCompatActivity {
                 new String[] {"name", "author", "title", "gender","isbn", "year", "description"},
                 new int[] {R.id.filterName, R.id.filterAuthor, R.id.filterTitle, R.id.filterGender, R.id.filterIsbn, R.id.filterYear, R.id.filterDescription});
         bookFilterList.setAdapter(listAdapter);
+        bookFilterList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+                ActionBar actionBar = getSupportActionBar();
+                actionBar.show();
+                HashMap<String, String> map = (HashMap<String, String>) parent.getItemAtPosition(position);
+                actionBar.setTitle(map.get("name"));
+                lastItemClicked = position;
+                System.out.println(position + "   " + id);
+            }
+        });
     }
 
     @Override
@@ -53,11 +69,30 @@ public class BookFilterCatalogActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
 
+        if (id == R.id.filter_action_see) {
+            actionDisplay();
+            return true;
+        }
+
+        if (id == R.id.filter_action_del) {
+            actionDelete();
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
+    }
+
+    private void actionDelete(){
+
+    }
+
+    private void actionDisplay(){
+
     }
 }

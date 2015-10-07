@@ -34,5 +34,6 @@
     <string name="title_activity_action_bar_book">ActionBarBook</string>
     <string name="title_activity_create_book_filter">CreateBookFilterActivity</string>
     <string name="title_activity_book_filter_catalog">BookFilterCatalogActivity</string>
+    <string name="title_activity_filtred_collection">FiltredCollectionActivity</string>
 
 </resources>
