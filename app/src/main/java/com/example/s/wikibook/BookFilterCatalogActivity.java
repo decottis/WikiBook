@@ -18,7 +18,7 @@ import java.util.Map;
 
 public class BookFilterCatalogActivity extends AppCompatActivity {
     private int lastItemClicked = -1;
-
+    private Menu menu = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,19 +29,24 @@ public class BookFilterCatalogActivity extends AppCompatActivity {
     public void majFilterBookList(){
         ListView bookFilterList = (ListView)findViewById(R.id.bookFilterList);
         List<Map<String, String>> l_filter = new ArrayList<Map<String, String>>();
-
-        for( BookFilter bookFilter : BookFilterCatalog.getBookFilters()) {
-            Map<String, String> bookMap = new HashMap<String, String>();
-            bookMap.put("name", bookFilter.getName());
-            bookMap.put("author", bookFilter.getCriterion(BookFilter.FilterType.AUTHOR));
-            bookMap.put("title", bookFilter.getCriterion(BookFilter.FilterType.TITLE));
-            bookMap.put("gender", bookFilter.getCriterion(BookFilter.FilterType.GENDER));
-            bookMap.put("isbn", bookFilter.getCriterion(BookFilter.FilterType.ISBN));
-            bookMap.put("year", bookFilter.getCriterion(BookFilter.FilterType.YEAR));
-            bookMap.put("description", bookFilter.getCriterion(BookFilter.FilterType.DESCRIPTION));
-            l_filter.add(bookMap);
+        checkAnModifyMenuItemsVisibility();
+        if(BookFilterCatalog.isEmpty()){
+            ActionBar actionBar = getSupportActionBar();
+            //actionBar.show();
+            actionBar.setTitle(this.getTitle());
+        } else {
+            for (BookFilter bookFilter : BookFilterCatalog.getBookFilters()) {
+                Map<String, String> bookMap = new HashMap<String, String>();
+                bookMap.put("name", bookFilter.getName());
+                bookMap.put("author", bookFilter.getCriterion(BookFilter.FilterType.AUTHOR));
+                bookMap.put("title", bookFilter.getCriterion(BookFilter.FilterType.TITLE));
+                bookMap.put("gender", bookFilter.getCriterion(BookFilter.FilterType.GENDER));
+                bookMap.put("isbn", bookFilter.getCriterion(BookFilter.FilterType.ISBN));
+                bookMap.put("year", bookFilter.getCriterion(BookFilter.FilterType.YEAR));
+                bookMap.put("description", bookFilter.getCriterion(BookFilter.FilterType.DESCRIPTION));
+                l_filter.add(bookMap);
+            }
         }
-
         SimpleAdapter listAdapter = new SimpleAdapter(this.getBaseContext(), l_filter, R.layout.book_filter_detail,
                 new String[] {"name", "author", "title", "gender","isbn", "year", "description"},
                 new int[] {R.id.filterName, R.id.filterAuthor, R.id.filterTitle, R.id.filterGender, R.id.filterIsbn, R.id.filterYear, R.id.filterDescription});
@@ -60,10 +65,28 @@ public class BookFilterCatalogActivity extends AppCompatActivity {
         });
     }
 
+    private void checkAnModifyMenuItemsVisibility(){
+        if(BookFilterCatalog.isEmpty()){
+            if(menu != null) {
+                menu.getItem(0).setVisible(false);
+                menu.getItem(1).setVisible(false);
+                menu.getItem(2).setVisible(false);
+            }
+        } else {
+            if(menu != null) {
+                menu.getItem(0).setVisible(true);
+                menu.getItem(1).setVisible(true);
+                menu.getItem(2).setVisible(true);
+            }
+        }
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_book_filter_catalog, menu);
+        this.menu = menu;
+        checkAnModifyMenuItemsVisibility();
         return true;
     }
 
@@ -94,7 +117,7 @@ public class BookFilterCatalogActivity extends AppCompatActivity {
     }
 
     private void actionDelete(){
-        BookFilterCatalog.getBookFilters().remove(lastItemClicked);
+        BookFilterCatalog.removeBookFilter(lastItemClicked);
         majFilterBookList();
     }
 

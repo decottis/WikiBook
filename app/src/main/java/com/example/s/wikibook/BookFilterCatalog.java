@@ -16,6 +16,7 @@ public class BookFilterCatalog {
     private static BookFilter selectedBookFilter;
 
     public static List<BookFilter> getBookFilters(){
+
         return filters;
     }
 
@@ -23,11 +24,18 @@ public class BookFilterCatalog {
         filters.add(bookFilter);
     }
 
-    public static void removeBookFilter(BookFilter filter){
-        filters.remove(filter);
+    public static void addBookFilter(int location, BookFilter bookFilter){
+
+        filters.add(location, bookFilter);
+    }
+
+    public static void removeBookFilter(int filterId){
+
+        filters.remove(filterId);
     }
 
     public static BookFilter getSelectedBookFilter(){
+
         return selectedBookFilter;
     }
 
@@ -39,4 +47,7 @@ public class BookFilterCatalog {
         selectedBookFilter = filters.get(bookFilterId);
     }
 
+    public static boolean isEmpty(){
+        return filters == null || filters.isEmpty();
+    }
 }
