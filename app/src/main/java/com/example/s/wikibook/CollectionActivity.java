@@ -33,6 +33,9 @@ public class CollectionActivity extends ActionBarActivity {
     @Override
     public void onResume() {
         super.onResume();  // Always call the superclass method first
+        ActionBar actionBar = getSupportActionBar();
+        lastItemClicked = -1;
+        actionBar.setTitle("WikiBook");
         majListBook();
     }
 
