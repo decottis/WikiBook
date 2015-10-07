@@ -1,7 +1,7 @@
 package com.example.s.wikibook;
 
-import android.app.Activity;
 import android.content.Context;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,9 +12,7 @@ import android.widget.Toast;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CreateBookFilterActivity extends Activity {
-
-
+public class CreateBookFilterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,16 +20,15 @@ public class CreateBookFilterActivity extends Activity {
         setContentView(R.layout.activity_create_book_filter);
     }
 
-    public void createBookFilter(View view)
-    {
+    public void createBookFilter(View view){
         Map<BookFilter.FilterType, String> criteria = new HashMap<BookFilter.FilterType, String>();
-        EditText name = (EditText)findViewById(R.id.EditName);
-        EditText title = (EditText)findViewById(R.id.EditTitle);
-        EditText author = (EditText)findViewById(R.id.EditAuthor);
-        EditText description = (EditText)findViewById(R.id.EditDescription);
-        EditText year = (EditText)findViewById(R.id.EditYear);
-        EditText genre = (EditText)findViewById(R.id.EditGenre);
-        EditText isbn = (EditText)findViewById(R.id.EditIsbn);
+        EditText name = (EditText)findViewById(R.id.CriterionName);
+        EditText title = (EditText)findViewById(R.id.CriterionTitle);
+        EditText author = (EditText)findViewById(R.id.CriterionAuthor);
+        EditText description = (EditText)findViewById(R.id.CriterionDescription);
+        EditText year = (EditText)findViewById(R.id.CriterionYear);
+        EditText genre = (EditText)findViewById(R.id.CriterionGenre);
+        EditText isbn = (EditText)findViewById(R.id.CriterionIsbn);
 
         criteria.put(BookFilter.FilterType.TITLE, title.getText().toString());
         criteria.put(BookFilter.FilterType.AUTHOR, author.getText().toString());
@@ -63,7 +60,7 @@ public class CreateBookFilterActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_create_book, menu);
+        getMenuInflater().inflate(R.menu.menu_create_book_filter, menu);
         return true;
     }
 

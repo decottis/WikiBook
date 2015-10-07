@@ -19,6 +19,7 @@
     <string name="description">Description</string>
     <string name="isbn">ISBN</string>
 
+    <string name="hintName">Put the filter name here</string>
     <string name="hintTitle">Put the title here</string>
     <string name="hintAuthor">Put the author here</string>
     <string name="hintGenre">Put the genre here</string>
@@ -31,5 +32,6 @@
     <string name="BookFilterCreated">Your book filter has been created</string>
     <string name="title_activity_action_bar">ActionBar</string>
     <string name="title_activity_action_bar_book">ActionBarBook</string>
+    <string name="title_activity_create_book_filter">CreateBookFilterActivity</string>
 
 </resources>
