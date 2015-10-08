@@ -1,8 +1,10 @@
 package com.example.s.wikibook;
 
+import android.support.v7.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,7 +26,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CreateBookActivity extends Activity {
+public class CreateBookActivity extends AppCompatActivity {
 
     private ImageSwitcher switcher;
     private Button b1, b2;
@@ -35,6 +37,9 @@ public class CreateBookActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_book);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(R.string.BookCreator);
 
         switcher = (ImageSwitcher)findViewById(R.id.imageSwitcher1);
         b1 = (Button) findViewById(R.id.button);

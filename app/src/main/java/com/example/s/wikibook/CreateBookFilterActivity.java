@@ -1,6 +1,7 @@
 package com.example.s.wikibook;
 
 import android.content.Context;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,6 +19,9 @@ public class CreateBookFilterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_book_filter);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(R.string.BookFilterCreator);
     }
 
     public void createBookFilter(View view){

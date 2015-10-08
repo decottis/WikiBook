@@ -70,7 +70,7 @@ public class BookFilterCatalogActivity extends AppCompatActivity {
                 menu.getItem(1).setVisible(false);
                 menu.getItem(2).setVisible(false);
                 ActionBar actionBar = getSupportActionBar();
-                actionBar.setTitle(this.getTitle());
+                actionBar.setTitle("My Filters");
             }
         } else {
             if(menu != null) {

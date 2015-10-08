@@ -26,7 +26,8 @@ public class CollectionActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collection);
-
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("My Collection");
         majListBook();
     }
 
@@ -35,7 +36,7 @@ public class CollectionActivity extends ActionBarActivity {
         super.onResume();  // Always call the superclass method first
         ActionBar actionBar = getSupportActionBar();
         lastItemClicked = -1;
-        actionBar.setTitle("WikiBook");
+        actionBar.setTitle("My Collection");
         majListBook();
     }
 
@@ -114,7 +115,7 @@ public class CollectionActivity extends ActionBarActivity {
             BookCollection.getBooks().remove(lastItemClicked);
             majListBook();
             ActionBar actionBar = getSupportActionBar();
-            actionBar.setTitle("WikiBook");
+            actionBar.setTitle("My Collection");
             if (BookCollection.getBooks().size() == 0) {
                 ActionMenuItemView menuItem = (ActionMenuItemView) findViewById(R.id.action_del);
                 menuItem.setVisibility(View.INVISIBLE);
